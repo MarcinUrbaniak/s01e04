@@ -2,7 +2,7 @@ package io.github.com.javafaktura.s01.e04.calculator;
 
 import io.github.com.javafaktura.s01.e04.model.Pizza;
 
-public class SmallPizzaCalculationPolicy implements CalculationPolicy {
+public class SmallPizzaCalculationStrategy implements CalculationStrategy {
 
     @Override
     public int calculate(Pizza pizza) {

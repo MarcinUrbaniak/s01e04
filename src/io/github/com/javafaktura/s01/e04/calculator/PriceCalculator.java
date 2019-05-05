@@ -11,23 +11,23 @@ public class PriceCalculator {
     }
 
     public int calculatePrice() {
-        CalculationPolicy calculationPolicy = choosePolicy(pizza.getSize());
+        CalculationStrategy calculationStrategy = choosePolicy(pizza.getSize());
 
-        int price = calculationPolicy.calculate(pizza);
+        int price = calculationStrategy.calculate(pizza);
         System.out.println("Price: " + price);
         return price;
     }
 
-    private CalculationPolicy choosePolicy(Size size) {
+    private CalculationStrategy choosePolicy(Size size) {
         switch (size) {
             case SMALL:
-                return new SmallPizzaCalculationPolicy();
+                return new SmallPizzaCalculationStrategy();
             case MEDIUM:
-                return new MediumPizzaCalculationPolicy();
+                return new MediumPizzaCalculationStrategy();
             case LARGE:
-                return new LargePizzaCalculationPolicy();
+                return new LargePizzaCalculationStrategy();
             case EXTRA_LARGE:
-                return new ExtraLargePizzaCalculationPolicy();
+                return new ExtraLargePizzaCalculationStrategy();
             default:
                 throw new IllegalStateException("Unknown size=" + size);
         }

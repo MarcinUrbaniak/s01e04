@@ -6,7 +6,7 @@ import static io.github.com.javafaktura.s01.e04.calculator.PriceCalculatorUtils.
 import static io.github.com.javafaktura.s01.e04.model.Dough.PLUMB;
 import static io.github.com.javafaktura.s01.e04.model.Topping.ANANAS;
 
-class LargePizzaCalculationPolicy implements CalculationPolicy {
+class LargePizzaCalculationStrategy implements CalculationStrategy {
 
     @Override
     public int calculate(Pizza pizza) {
