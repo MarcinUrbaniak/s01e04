@@ -1,7 +1,10 @@
 package io.github.com.javafaktura.s01.e04.calculator;
 
 import io.github.com.javafaktura.s01.e04.calculator.resolver.CalculationStrategyResolver;
-import io.github.com.javafaktura.s01.e04.calculator.resolver.SwitchCalculationStrategyResolver;
+
+import java.time.Instant;
+import java.time.LocalDateTime;
+
 import io.github.com.javafaktura.s01.e04.model.Pizza;
 
 public class PriceCalculator {
@@ -16,8 +19,13 @@ public class PriceCalculator {
     public int calculatePrice() {
         CalculationStrategy calculationStrategy = resolver.choosePolicy(pizza.getSize());
 
+        System.out.println("Calculation strategy " + calculationStrategy + " invoked at " + LocalDateTime.now());
+
+        int before = Instant.now().getNano();
         int price = calculationStrategy.calculate(pizza);
-        System.out.println("Price: " + price);
+        int after = Instant.now().getNano();
+
+        System.out.println("Calculation time=" + (after - before));
         return price;
     }
 }
