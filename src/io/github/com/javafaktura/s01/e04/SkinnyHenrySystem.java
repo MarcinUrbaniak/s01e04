@@ -28,63 +28,86 @@ public class SkinnyHenrySystem {
 
         switch (size) {
             case SMALL:
-                if (pizza.getToppings().size() <= 2) {
-                    price = 18;
-                } else {
-                    price = 22;
-                }
+                price = calculatePriceForSmallPizza(pizza);
                 break;
             case MEDIUM:
-                if (pizza.getToppings().size() <= 3) {
-                    if (getMeatToppingsPercentage(pizza.getToppings()) < 50) {
-                        price = 25;
-                    } else {
-                        price = 27;
-                    }
-                } else {
-                    if (getMeatToppingsPercentage(pizza.getToppings()) < 40) {
-                        price = 27;
-                    } else {
-                        price = 29;
-                    }
-                }
+                price = calculatePriceForMediumPizza(pizza);
                 break;
             case LARGE:
-                if (pizza.getToppings().size() <= 3) {
-                    if (getMeatToppingsPercentage(pizza.getToppings()) < 40) {
-                        price = 30;
-                    } else {
-                        price = 35;
-                    }
-                } else {
-                    if (pizza.getToppings().contains(ANANAS)) {
-                        price = 37;
-                    } else {
-                        price = 40;
-                    }
-                }
-
-                if (pizza.getDough() == PLUMB) {
-                    price += 5;
-                }
-
+                price = calculatePriceForLargePizza(pizza);
                 break;
             case EXTRA_LARGE:
-                if (pizza.getToppings().size() <= 2) {
-                    price = 40;
-                } else {
-                    price = 50;
-                }
-
-                if (pizza.getDough() == PLUMB) {
-                    price +=10;
-                }
+                price = calculatePriceForExtraLargePizza(pizza);
                 break;
             default:
                 throw new IllegalStateException("Unknown size=" + size);
         }
 
         System.out.println("Price: " + price);
+        return price;
+    }
+
+    private int calculatePriceForExtraLargePizza(Pizza pizza) {
+        int price;
+        if (pizza.getToppings().size() <= 2) {
+            price = 40;
+        } else {
+            price = 50;
+        }
+
+        if (pizza.getDough() == PLUMB) {
+            price +=10;
+        }
+        return price;
+    }
+
+    private int calculatePriceForLargePizza(Pizza pizza) {
+        int price;
+        if (pizza.getToppings().size() <= 3) {
+            if (getMeatToppingsPercentage(pizza.getToppings()) < 40) {
+                price = 30;
+            } else {
+                price = 35;
+            }
+        } else {
+            if (pizza.getToppings().contains(ANANAS)) {
+                price = 37;
+            } else {
+                price = 40;
+            }
+        }
+
+        if (pizza.getDough() == PLUMB) {
+            price += 5;
+        }
+        return price;
+    }
+
+    private int calculatePriceForMediumPizza(Pizza pizza) {
+        int price;
+        if (pizza.getToppings().size() <= 3) {
+            if (getMeatToppingsPercentage(pizza.getToppings()) < 50) {
+                price = 25;
+            } else {
+                price = 27;
+            }
+        } else {
+            if (getMeatToppingsPercentage(pizza.getToppings()) < 40) {
+                price = 27;
+            } else {
+                price = 29;
+            }
+        }
+        return price;
+    }
+
+    private int calculatePriceForSmallPizza(Pizza pizza) {
+        int price;
+        if (pizza.getToppings().size() <= 2) {
+            price = 18;
+        } else {
+            price = 22;
+        }
         return price;
     }
 
