@@ -15,38 +15,22 @@ public class SkinnyHenrySystem {
     void run() {
         System.out.println("What's up! This is Skinny Henry pizzeria system.");
 
-        addPizza();
+        createPizza();
     }
 
-    private void addPizza() {
+    private void createPizza() {
         try(Scanner in = new Scanner(System.in)) {
             System.out.println("Give me name for your pizza");
-            String pizzaName = in.nextLine();
-            if (pizzaName.isBlank()) {
-                pizzaName = "John";
-            }
+            String pizzaName = getName(in.nextLine());
 
-            System.out.println("Which dough do you want? (ITALIAN, POLISH, PLUMB)");
-            String doughValue = in.nextLine();
-            if (doughValue.isBlank()) {
-                doughValue = "ITALIAN";
-            }
+            System.out.println("Which dough? (ITALIAN, POLISH, PLUMB)");
+            Dough dough = getDough(in.nextLine());
 
-            Dough dough = Dough.valueOf(doughValue);
+            System.out.println("Which sauce? (TOMATO, CHEESE, TOMATO_CHEESE)");
+            Sauce sauce = getSauce(in.nextLine());
 
-            System.out.println("Which sauce do you want? (TOMATO, CHEESE, TOMATO-CHEESE)");
-            String sauceValue = in.nextLine();
-            if (sauceValue.isBlank()) {
-                sauceValue = "TOMATO_CHEESE";
-            }
-            Sauce sauce = Sauce.valueOf(sauceValue);
-
-            System.out.println("Give me the size of pizza (SMALL, MEDIUM, LARGE, EXTRA_LARGE)");
-            String sizeValue = in.nextLine();
-            if (sizeValue.isBlank()) {
-                sizeValue = "MEDIUM";
-            }
-            Size size = Size.valueOf(sizeValue);
+            System.out.println("Which size? (SMALL, MEDIUM, LARGE, EXTRA_LARGE)");
+            Size size = getSize(in.nextLine());
 
             List<Topping> toppings = new ArrayList<>();
             while (true) {
@@ -64,5 +48,34 @@ public class SkinnyHenrySystem {
             Pizza pizza = new Pizza(pizzaName, dough, sauce, size, toppings);
             System.out.println(pizza);
         }
+    }
+
+    private String getName(String pizzaName) {
+        if (pizzaName.isBlank()) {
+            pizzaName = "Mine pizza";
+        }
+        return pizzaName;
+    }
+
+    private Size getSize(String sizeValue) {
+        if (sizeValue.isBlank()) {
+            sizeValue = "MEDIUM";
+        }
+        return Size.valueOf(sizeValue);
+    }
+
+    private Sauce getSauce(String sauceValue) {
+        if (sauceValue.isBlank()) {
+            sauceValue = "TOMATO_CHEESE";
+        }
+        return Sauce.valueOf(sauceValue);
+    }
+
+    private Dough getDough(String doughValue) {
+        if (doughValue.isBlank()) {
+            doughValue = "ITALIAN";
+        }
+
+        return Dough.valueOf(doughValue);
     }
 }
