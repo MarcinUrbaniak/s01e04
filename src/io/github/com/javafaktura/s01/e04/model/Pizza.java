@@ -1,33 +1,36 @@
 package io.github.com.javafaktura.s01.e04.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Pizza {
     private final String name;
-    private Dough dough;
-    private Sauce sauce;
-    private Size size;
-    private List<Topping> toppings = new ArrayList<>();
+    private final Dough dough;
+    private final Sauce sauce;
+    private final Size size;
+    private final List<Topping> toppings;
 
-    public Pizza(String name) {
+    public Pizza(String name, Dough dough, Sauce sauce, Size size, List<Topping> toppings) {
         this.name = name;
+        this.dough = dough;
+        this.sauce = sauce;
+        this.size = size;
+        this.toppings = List.copyOf(toppings);
+    }
+
+    public Dough getDough() {
+        return dough;
+    }
+
+    public Sauce getSauce() {
+        return sauce;
+    }
+
+    public Size getSize() {
+        return size;
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setDough(Dough dough) {
-        this.dough = dough;
-    }
-
-    public void setSauce(Sauce sauce) {
-        this.sauce = sauce;
-    }
-
-    public void setSize(Size size) {
-        this.size = size;
     }
 
     public List<Topping> getToppings() {

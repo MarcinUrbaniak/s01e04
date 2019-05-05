@@ -1,5 +1,7 @@
 package io.github.com.javafaktura.s01.e04;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import io.github.com.javafaktura.s01.e04.model.*;
@@ -13,27 +15,27 @@ public class SkinnyHenrySystem {
     void run() {
         System.out.println("What's up! This is Skinny Henry pizzeria system.");
 
+        addPizza();
+    }
+
+    private void addPizza() {
         try(Scanner in = new Scanner(System.in)) {
             System.out.println("Give me a pizza name");
             String pizzaName = in.nextLine();
-            Pizza pizza = new Pizza(pizzaName);
 
             System.out.println("Which dough do you want? (ITALIAN, POLISH, PLUMB)");
-            String dough = in.nextLine();
-            pizza.setDough(Dough.valueOf(dough));
+            Dough dough = Dough.valueOf(in.nextLine());
 
             System.out.println("Which sauce do you want? (TOMATO, CHEESE, TOMATO-CHEESE)");
-            String sauce = in.nextLine();
-            pizza.setSauce(Sauce.valueOf(sauce));
+            Sauce sauce = Sauce.valueOf(in.nextLine());
 
             System.out.println("Give me the size of pizza (SMALL, MEDIUM, LARGE, EXTRA_LARGE)");
-            String size = in.nextLine();
-            pizza.setSize(Size.valueOf(size));
+            Size size = Size.valueOf(in.nextLine());
 
+            List<Topping> toppings = new ArrayList<>();
             while (true) {
                 System.out.println("Which topping do you want?");
-                String topping = in.nextLine();
-                pizza.getToppings().add(Topping.valueOf(topping));
+                toppings.add(Topping.valueOf(in.nextLine()));
 
                 System.out.println("More toppings? (YES/NO)");
                 String nextTopping = in.nextLine();
@@ -43,6 +45,7 @@ public class SkinnyHenrySystem {
                 }
             }
 
+            Pizza pizza = new Pizza(pizzaName, dough, sauce, size, toppings);
             System.out.println(pizza);
         }
     }
