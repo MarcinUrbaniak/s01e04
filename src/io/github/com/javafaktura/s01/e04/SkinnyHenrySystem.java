@@ -2,6 +2,7 @@ package io.github.com.javafaktura.s01.e04;
 
 import java.util.Scanner;
 
+import io.github.com.javafaktura.s01.e04.calculator.PriceCalculator;
 import io.github.com.javafaktura.s01.e04.model.*;
 
 public class SkinnyHenrySystem {
