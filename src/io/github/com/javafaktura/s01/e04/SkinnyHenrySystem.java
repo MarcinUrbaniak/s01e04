@@ -20,17 +20,33 @@ public class SkinnyHenrySystem {
 
     private void addPizza() {
         try(Scanner in = new Scanner(System.in)) {
-            System.out.println("Give me a pizza name");
+            System.out.println("Give me name for your pizza");
             String pizzaName = in.nextLine();
+            if (pizzaName.isBlank()) {
+                pizzaName = "John";
+            }
 
             System.out.println("Which dough do you want? (ITALIAN, POLISH, PLUMB)");
-            Dough dough = Dough.valueOf(in.nextLine());
+            String doughValue = in.nextLine();
+            if (doughValue.isBlank()) {
+                doughValue = "ITALIAN";
+            }
+
+            Dough dough = Dough.valueOf(doughValue);
 
             System.out.println("Which sauce do you want? (TOMATO, CHEESE, TOMATO-CHEESE)");
-            Sauce sauce = Sauce.valueOf(in.nextLine());
+            String sauceValue = in.nextLine();
+            if (sauceValue.isBlank()) {
+                sauceValue = "TOMATO_CHEESE";
+            }
+            Sauce sauce = Sauce.valueOf(sauceValue);
 
             System.out.println("Give me the size of pizza (SMALL, MEDIUM, LARGE, EXTRA_LARGE)");
-            Size size = Size.valueOf(in.nextLine());
+            String sizeValue = in.nextLine();
+            if (sizeValue.isBlank()) {
+                sizeValue = "MEDIUM";
+            }
+            Size size = Size.valueOf(sizeValue);
 
             List<Topping> toppings = new ArrayList<>();
             while (true) {
