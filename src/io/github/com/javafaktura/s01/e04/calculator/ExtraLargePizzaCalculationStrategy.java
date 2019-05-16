@@ -4,7 +4,7 @@ import io.github.com.javafaktura.s01.e04.model.Pizza;
 
 import static io.github.com.javafaktura.s01.e04.model.Dough.PLUMB;
 
-class ExtraLargePizzaCalculationStrategy implements CalculationStrategy {
+public class ExtraLargePizzaCalculationStrategy implements CalculationStrategy {
 
     @Override
     public int calculate(Pizza pizza) {

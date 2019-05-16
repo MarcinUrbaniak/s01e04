@@ -4,7 +4,7 @@ import io.github.com.javafaktura.s01.e04.model.Pizza;
 
 import static io.github.com.javafaktura.s01.e04.calculator.PriceCalculatorUtils.getMeatToppingsPercentage;
 
-class MediumPizzaCalculationStrategy implements CalculationStrategy {
+public class MediumPizzaCalculationStrategy implements CalculationStrategy {
 
     @Override
     public int calculate(Pizza pizza) {

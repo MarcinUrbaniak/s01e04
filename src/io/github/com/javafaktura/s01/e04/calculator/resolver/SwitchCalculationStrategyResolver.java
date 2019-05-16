@@ -1,10 +1,12 @@
-package io.github.com.javafaktura.s01.e04.calculator;
+package io.github.com.javafaktura.s01.e04.calculator.resolver;
 
+import io.github.com.javafaktura.s01.e04.calculator.*;
 import io.github.com.javafaktura.s01.e04.model.Size;
 
-public class SwitchCalculationStrategyResolver {
+public class SwitchCalculationStrategyResolver implements CalculationStrategyResolver {
 
-    CalculationStrategy choosePolicy(Size size) {
+    @Override
+    public CalculationStrategy choosePolicy(Size size) {
         switch (size) {
             case SMALL:
                 return new SmallPizzaCalculationStrategy();
