@@ -4,12 +4,10 @@ import java.time.Instant;
 
 import io.github.com.javafaktura.s01.e04.model.Pizza;
 
-class ComputationTimeDecorator implements CalculationStrategy {
-
-    private final CalculationStrategy decorated;
+class ComputationTimeDecorator extends CalculationStrategyDecorator {
 
     ComputationTimeDecorator(CalculationStrategy decorated) {
-        this.decorated = decorated;
+        super(decorated);
     }
 
     @Override
@@ -19,7 +17,6 @@ class ComputationTimeDecorator implements CalculationStrategy {
         int after = Instant.now().getNano();
 
         System.out.println("Calculation time=" + (after - before));
-
         return price;
     }
 }

@@ -4,12 +4,10 @@ import java.time.LocalDateTime;
 
 import io.github.com.javafaktura.s01.e04.model.Pizza;
 
-class LoggingCalculationDecorator implements CalculationStrategy {
-
-    private final CalculationStrategy decorated;
+class LoggingCalculationDecorator extends CalculationStrategyDecorator {
 
     LoggingCalculationDecorator(CalculationStrategy decorated) {
-        this.decorated = decorated;
+        super(decorated);
     }
 
     @Override
