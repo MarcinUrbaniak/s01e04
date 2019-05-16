@@ -17,15 +17,11 @@ public class PriceCalculator {
     }
 
     public int calculatePrice() {
-        CalculationStrategy calculationStrategy = resolver.choosePolicy(pizza.getSize());
-
-        System.out.println("Calculation strategy " + calculationStrategy + " invoked at " + LocalDateTime.now());
-
-        int before = Instant.now().getNano();
-        int price = calculationStrategy.calculate(pizza);
-        int after = Instant.now().getNano();
-
-        System.out.println("Calculation time=" + (after - before));
-        return price;
+        CalculationStrategy calculationStrategy = new LoggingCalculationDecorator(
+                                                        new ComputationTimeDecorator(
+                                                            resolver.choosePolicy(pizza.getSize())
+                                                        )
+                                                  );
+        return calculationStrategy.calculate(pizza);
     }
 }
